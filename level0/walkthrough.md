@@ -113,9 +113,40 @@ There is one interesting instruction here which is this line:
 
 > This is a comparison between two values one being `0x1a7` and the other being what's currently stored in [EAX Register](https://www.tutorialspoint.com/assembly_programming/assembly_registers.htm).
 
-Let's convert this hexadecimal value using [`bc`](https://www.tutorialspoint.com/assembly_programming/assembly_registers.htm)
+Let's convert this hexadecimal value using [`bc`](https://www.tutorialspoint.com/assembly_programming/assembly_registers.htm).
 
 ```shell
   $> echo 'ibase=16; 1A7' | bc 
   423
 ```
+
+Let's try this input to see what happens...
+
+```shell
+  $> ./level0 423
+  $
+```
+
+> We can see that our prompt changed to `$` 
+
+It seems like it opened a shell. After some analysis with gdb, we can find this into the code:
+
+```gdb
+  0x08048ee0 <+32>:    movl   $0x80c5348,(%esp)
+  
+  (gdb) x/s 0x80c5348
+  0x80c5348:       "/bin/sh"
+```
+
+> Thanks to the `x/s` command, we can get the string representation of any memory address.
+
+All we have to do now is to navigate through the filesystem to get the `level1` user password.
+
+```shell
+  $ cat /home/user/level1/.pass
+  1fe8a524fa4bec01ca4ea2a869af2a02260d4a7d5fe7e7c24d8617e6dca12d3a
+```
+
+So next user credentials pair is `level1:1fe8a524fa4bec01ca4ea2a869af2a02260d4a7d5fe7e7c24d8617e6dca12d3a`.
+
+Check [here](./source.c) for potential source-code of this binary.
