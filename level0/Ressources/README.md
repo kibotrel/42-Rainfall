@@ -13,5 +13,5 @@
 Use this command to compile [`source.c`](../source.c), reproduction source-code of the given binary.
 
 ```shell
- $> gcc -Wl, -z, norelro -o level0 source.c
+ $> gcc -Wl,-z,norelro -o level0 source.c
 ```
