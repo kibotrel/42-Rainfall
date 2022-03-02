@@ -56,7 +56,7 @@ We can get more details on this program by listing all functions it uses.
   0x0804854c  _fini
 ```
 
-We can see `run` which is never called in the main. Let's check what it's supposed to do.
+We can see `run()` which is never called in the main. Let's check what it's supposed to do.
 
 ```gdb
   (gdb) disassemble run
@@ -138,4 +138,4 @@ Now, to compute the offset we simply need to substract the buffer address from E
   76
 ```
 
-The buffer offset is `76`.
+The buffer offset is **76**.

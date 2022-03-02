@@ -5,7 +5,7 @@ void run(void) {
   system("/bin/sh");
 }
 
-int main(int argc, char **argv) {
+int main(void) {
   char buffer[64];
 
   gets(buffer);

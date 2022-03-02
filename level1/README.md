@@ -17,7 +17,7 @@ Using [`gdb`](https://linux.die.net/man/1/gdb), we can dig through the binary to
 
 > Never use `gets()`. Because it is impossible to tell without knowing the data in advance how many characters `gets()` will read, and because `gets()` will continue to store characters past the end of the buffer, it is extremely dangerous to use. It has been used to break computer security.
 
-After some research the obvious path to take is to exploit this fuction to create a [buffer overflow attack](https://en.wikipedia.org/wiki/Buffer_overflow). In order to do this, we must compute the buffer offset using **data section** of our `gdb` analysis stated above, we find that the offset is `76`.
+After some research the obvious path to take is to exploit this fuction to create a [buffer overflow attack](https://en.wikipedia.org/wiki/Buffer_overflow). In order to do this, we must compute the buffer offset using **data section** of our `gdb` analysis stated above, we find that the offset is **76**.
 
 Then we need to construct a call to `run()` using this offset and the function's address.
 

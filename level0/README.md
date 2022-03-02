@@ -13,7 +13,7 @@ Let's see what does the binary do.
 
 > Seems like this program want us to input an argument.
 
-Using [`gdb`](https://linux.die.net/man/1/gdb), we can dig through the binary to understand what's going on (full analysis [here](./Ressources/gdb.md)). Thanks to it we find that `423` should be given to the program to get a running shell as `level1`. All we have to do then is to navigate through the filesystem to get the `level1` user password.
+Using [`gdb`](https://linux.die.net/man/1/gdb), we can dig through the binary to understand what's going on (full analysis [here](./Ressources/gdb.md)). Thanks to it we find that **423** should be given to the program to get a running shell as `level1`. All we have to do then is to navigate through the filesystem to get the `level1` user password.
 
 ```shell
   $> ./level0 423

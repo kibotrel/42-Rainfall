@@ -79,7 +79,7 @@ Let's convert this hexadecimal value using [`bc`](https://www.tutorialspoint.com
   423
 ```
 
-So, if we give `423` as argument to this binary it should give us a shell running as `level1`.
+So, if we give **423** as argument to this binary it should give us a shell running as `level1`.
 
 ## Data
 
