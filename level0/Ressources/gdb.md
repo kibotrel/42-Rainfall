@@ -64,31 +64,30 @@ Let's see what this program does...
 
 > We can see [`atoi()`](https://linux.die.net/man/3/atoi), [`strdup()`](https://linux.die.net/man/3/strdup), [`getegid()`](https://linux.die.net/man/2/getegid), [`geteuid()`](https://linux.die.net/man/3/geteuid), [`setresgid()`](https://linux.die.net/man/2/setresgid), [`setresuid()`](https://man7.org/linux/man-pages/man2/setresuid.2.html), [`execv()`](https://man7.org/linux/man-pages/man2/execve.2.html) and [`fwrite()`](https://linux.die.net/man/3/fwrite) calls.
 
-There is one interesting instruction here which is this line:
+## Data
+
+### Program arguments
 
 ```gdb
   0x08048ed9 <+25>:    cmp    $0x1a7,%eax
+
+  (gdb) p 0x1a7
+  $1 = 423
 ```
 
-> This is a comparison between two values one being `0x1a7` and the other being what's currently stored in [EAX Register](https://www.tutorialspoint.com/assembly_programming/assembly_registers.htm).
+> This is a comparison between two values one being `0x1a7` and the other being what's currently stored in [EAX Register](https://www.tutorialspoint.com/assembly_programming/assembly_registers.htm). Thanks to the `p` command, we can evaluate some variables and do some calculation, working with numbers will, by default, output result as base10.
 
-Let's convert this hexadecimal value using [`bc`](https://www.tutorialspoint.com/assembly_programming/assembly_registers.htm).
+If we give **423** as argument to this binary it will give us a shell running as `level1`.
 
-```shell
-  $> echo 'ibase=16; 1A7' | bc 
-  423
+### Strings
+
+```gdb
+  0x08048ee0 <+32>:    movl   $0x80c5348,(%esp)
+  
+  (gdb) x/s 0x80c5348
+  0x80c5348: "/bin/sh"
 ```
 
-So, if we give **423** as argument to this binary it should give us a shell running as `level1`.
+> Thanks to the `x/s` command, we can get the string representation of any memory address.
 
-## Data
-
-- One address where the string `/bin/sh` is stored.
-  ```gdb
-    0x08048ee0 <+32>:    movl   $0x80c5348,(%esp)
-    
-    (gdb) x/s 0x80c5348
-    0x80c5348:       "/bin/sh"
-  ```
-
-  > Thanks to the `x/s` command, we can get the string representation of any memory address.
+The string `/bin/sh` is stored at address `0x80c5348`.

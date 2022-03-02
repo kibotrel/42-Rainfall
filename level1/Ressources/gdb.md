@@ -83,16 +83,6 @@ We can see `run()` which is never called in the main. Let's check what it's supp
 
 If we get a closer look into this function we can see this:
 
-```gdb
-  0x08048472 <+46>:    movl   $0x8048584,(%esp)
-  0x08048479 <+53>:    call   0x8048360 <system@plt>
-
-  x/s 0x8048584
-  0x8048584: "/bin/sh"
-```
-
-> This should be the way to get a shell via this binary.
-
 ## Data
 
 ### Additional function address
@@ -103,6 +93,18 @@ If we get a closer look into this function we can see this:
 ```
 
 The `run()` function is located at address `0x8048444`.
+
+### Buffer size
+
+```gdb
+  0x08048486 <+6>:     sub    $0x50,%esp
+  0x08048489 <+9>:     lea    0x10(%esp),%eax
+
+  (gdb) p 0x50 - 0x10
+  $1 = 64
+```
+
+There is a buffer of **64** bytes in `main()`.
 
 ### Buffer offset
 
@@ -122,6 +124,9 @@ The `run()` function is located at address `0x8048444`.
     ebp at 0xbffff728, eip at 0xbffff72c
   (gdb) x $esp
   0xbffff6d0: 0xbffff6e0
+
+  (gdb) p 0xbffff72c - 0xbffff6e0
+  $1 = 76
 ```
 
 > We put a breakpoint before the `gets()` call to retrieve some useful addresses: [EIP register](https://security.stackexchange.com/questions/129499/what-does-eip-stand-for) and the one where the buffer starts.
@@ -131,11 +136,16 @@ We get the following adresses:
 - EIP register: `0xbffff72c`
 - Buffer beginning: `0xbffff6e0`
 
-Now, to compute the offset we simply need to substract the buffer address from EIP's one.
+By substraction, we find that the buffer offset is **76**.
 
-```shell
-  $> echo 'ibase=16; BFFFF72C - BFFFF6E0' | bc
-  76
+### Strings
+
+```gdb
+  0x08048472 <+46>:    movl   $0x8048584,(%esp)
+  0x08048479 <+53>:    call   0x8048360 <system@plt>
+
+  x/s 0x8048584
+  0x8048584: "/bin/sh"
 ```
 
-The buffer offset is **76**.
+The string `/bin/sh` is located at address `0x8048584`. With the `system()` call, this should be the way to get a shell as `level2`.
