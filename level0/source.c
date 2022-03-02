@@ -3,10 +3,11 @@
 #include <string.h>
 #include <unistd.h>
 #include <sys/types.h>
+#define _GNU_SOURCE
 
 int main(int argc, char **argv) {
   if (atoi(argv[1]) == 423) {
-    char *args[2] = { strdup("/bin/sh"), 0 };
+    char* const args[] = { strdup("/bin/sh"), NULL };
     gid_t gid = getegid();
     uid_t uid = geteuid();
 
