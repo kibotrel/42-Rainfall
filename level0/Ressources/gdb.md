@@ -71,11 +71,11 @@ Let's see what this program does...
 ```gdb
   0x08048ed9 <+25>:    cmp    $0x1a7,%eax
 
-  (gdb) p 0x1a7
+  (gdb) print 0x1a7
   $1 = 423
 ```
 
-> This is a comparison between two values one being `0x1a7` and the other being what's currently stored in [EAX Register](https://www.tutorialspoint.com/assembly_programming/assembly_registers.htm). Thanks to the `p` command, we can evaluate some variables and do some calculation, working with numbers will, by default, output result as base10.
+> This is a comparison between two values one being `0x1a7` and the other being what's currently stored in [EAX Register](https://www.tutorialspoint.com/assembly_programming/assembly_registers.htm). Thanks to the `print` command, we can evaluate some variables and do some calculation, working with numbers will, by default, output result as base10.
 
 If we give **423** as argument to this binary it will give us a shell running as `level1`.
 

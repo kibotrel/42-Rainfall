@@ -81,8 +81,6 @@ We can see `run()` which is never called in the main. Let's check what it's supp
 
 > We can see calls to [`fwrite()`](https://linux.die.net/man/3/fwrite) and [`system()`](https://man7.org/linux/man-pages/man3/system.3.html) there.
 
-If we get a closer look into this function we can see this:
-
 ## Data
 
 ### Additional function address
@@ -100,7 +98,7 @@ The `run()` function is located at address `0x8048444`.
   0x08048486 <+6>:     sub    $0x50,%esp
   0x08048489 <+9>:     lea    0x10(%esp),%eax
 
-  (gdb) p 0x50 - 0x10
+  (gdb) print 0x50 - 0x10
   $1 = 64
 ```
 
@@ -109,27 +107,30 @@ There is a buffer of **64** bytes in `main()`.
 ### Buffer offset
 
 ```gdb
-  (gdb) b *0x08048490
+  (gdb) break *0x08048490
   Breakpoint 1 at 0x8048490
+
   (gdb) run 
   Starting program: /home/user/level1/level1 
 
   Breakpoint 1, 0x08048490 in main ()
-  (gdb) i f
+
+  (gdb) info frame
   Stack level 0, frame at 0xbffff730:
   eip = 0x8048490 in main; saved eip 0xb7e454d3
   Arglist at 0xbffff728, args: 
   Locals at 0xbffff728, Previous frame's sp is 0xbffff730
   Saved registers:
     ebp at 0xbffff728, eip at 0xbffff72c
+
   (gdb) x $esp
   0xbffff6d0: 0xbffff6e0
 
-  (gdb) p 0xbffff72c - 0xbffff6e0
+  (gdb) print 0xbffff72c - 0xbffff6e0
   $1 = 76
 ```
 
-> We put a breakpoint before the `gets()` call to retrieve some useful addresses: [EIP register](https://security.stackexchange.com/questions/129499/what-does-eip-stand-for) and the one where the buffer starts.
+> We put a breakpoint using command `break` before the `gets()` call to retrieve some useful addresses: [EIP register](https://security.stackexchange.com/questions/129499/what-does-eip-stand-for) and the one where the buffer starts using `info frame` command that output the current state of some variable and register at any given instruction during the program execution.
 
 We get the following adresses:
 
