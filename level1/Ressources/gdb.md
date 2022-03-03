@@ -83,7 +83,7 @@ We can see `run()` which is never called in the main. Let's check what it's supp
 
 ## Data
 
-### Additional function address
+### Additional function addresses
 
 ```gdb
   info address run
