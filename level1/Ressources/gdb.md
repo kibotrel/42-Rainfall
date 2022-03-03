@@ -81,9 +81,9 @@ We can see `run()` which is never called in the main. Let's check what it's supp
 
 > We can see calls to [`fwrite()`](https://linux.die.net/man/3/fwrite) and [`system()`](https://man7.org/linux/man-pages/man3/system.3.html) there.
 
-## Data
+# Data
 
-### Additional function addresses
+## Additional function addresses
 
 ```gdb
   info address run
@@ -92,7 +92,7 @@ We can see `run()` which is never called in the main. Let's check what it's supp
 
 The `run()` function is located at address `0x8048444`.
 
-### Buffer size
+## Buffer size
 
 ```gdb
   0x08048486 <+6>:     sub    $0x50,%esp
@@ -104,7 +104,7 @@ The `run()` function is located at address `0x8048444`.
 
 There is a buffer of **64** bytes in `main()`.
 
-### Buffer offset
+## Buffer offset
 
 ```gdb
   (gdb) break *0x08048490
@@ -139,7 +139,7 @@ We get the following adresses:
 
 By substraction, we find that the buffer offset is **76**.
 
-### Strings
+## Strings
 
 ```gdb
   0x08048472 <+46>:    movl   $0x8048584,(%esp)

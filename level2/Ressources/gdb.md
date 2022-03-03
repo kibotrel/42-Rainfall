@@ -63,9 +63,9 @@ As shown in the `main()` function another one is called, let's disasssemble it a
 
 > This time we get more information. It uses [`fflush()`](https://man7.org/linux/man-pages/man3/fflush.3.html), [`gets()`](https://linux.die.net/man/3/gets), [`printf()`](https://man7.org/linux/man-pages/man3/printf.3.html), [`exit()`](https://man7.org/linux/man-pages/man3/exit.3.html), [`puts()`](https://man7.org/linux/man-pages/man3/puts.3.html) and [`strdup()`](https://man7.org/linux/man-pages/man3/strdup.3.html).
 
-## Data
+# Data
 
-### Strings
+## Strings
 
 ```gdb
   0x08048507 <+51>:    mov    $0x8048620,%eax
@@ -93,7 +93,7 @@ The string `(%p)\n` is stored at address `0x8048620`.
 
 The string `/bin/sh` is stored at address `0xb7f8cc58`.
 
-### Buffer size
+## Buffer size
 
 ```gdb
   0x080484e7 <+19>:    lea    -0x4c(%ebp),%eax
@@ -104,7 +104,7 @@ The string `/bin/sh` is stored at address `0xb7f8cc58`.
 
  There is a buffer of **76** bytes in `p()`.
 
-### Buffer offset
+## Buffer offset
 
 ```gdb
   (gdb) break *0x080484f2
@@ -139,7 +139,7 @@ We get the following adresses:
 
 By substraction, we find that the buffer offset is **80**.
 
-### Additional function addresses
+## Additional function addresses
 
 ```gdb
   (gdb) print &system

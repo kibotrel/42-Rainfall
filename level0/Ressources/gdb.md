@@ -64,9 +64,9 @@ Let's see what this program does...
 
 > We can see [`atoi()`](https://linux.die.net/man/3/atoi), [`strdup()`](https://linux.die.net/man/3/strdup), [`getegid()`](https://linux.die.net/man/2/getegid), [`geteuid()`](https://linux.die.net/man/3/geteuid), [`setresgid()`](https://linux.die.net/man/2/setresgid), [`setresuid()`](https://man7.org/linux/man-pages/man2/setresuid.2.html), [`execv()`](https://man7.org/linux/man-pages/man2/execve.2.html) and [`fwrite()`](https://linux.die.net/man/3/fwrite) calls.
 
-## Data
+# Data
 
-### Program arguments
+## Program arguments
 
 ```gdb
   0x08048ed9 <+25>:    cmp    $0x1a7,%eax
@@ -79,7 +79,7 @@ Let's see what this program does...
 
 If we give **423** as argument to this binary it will give us a shell running as `level1`.
 
-### Strings
+## Strings
 
 ```gdb
   0x08048ee0 <+32>:    movl   $0x80c5348,(%esp)
