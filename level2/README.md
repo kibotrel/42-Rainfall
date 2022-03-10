@@ -23,10 +23,10 @@ After some research we find that since **ASLR** is off, we could do what's calle
 Once we get those, we use the buffer overflow to override the list of instruction stored in **EIP register** once again to execute a `system("/bin/sh"); exit();` basically. Thanks to our `gdb` analysis we get:
 
 - Offset is **80**.
-- `ret` instruction: `0x0804853e`
-- `system()` function: `0xb7e6b060`
-- `exit()` function: `0xb7e5ebe0`
-- `/bin/sh` string: `0xb7f8cc58`
+- `ret` instruction: `0x0804853e`.
+- `system()` function: `0xb7e6b060`.
+- `exit()` function: `0xb7e5ebe0`.
+- `/bin/sh` string: `0xb7f8cc58`.
 
 The attack is constructed as follow: first induce the overflow then trigger a ret instruction followed by a call to `system()` then `exit()` and finally `/bin/sh` by pushing their addresses in this order on top of EIP. Using the `cat` trick like in previous level, we'll get a working shell running as `level3`.
 
