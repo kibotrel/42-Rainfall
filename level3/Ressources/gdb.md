@@ -88,7 +88,7 @@ The string `/bin/sh` is stored at address `0x804860d`.
 ```gdb
   0x080484be <+26>:    lea    -0x208(%ebp),%eax
 
-  (gdb) p 0x208
+  (gdb) print 0x208
   $1 = 520
 ```
 
@@ -97,7 +97,7 @@ There is a buffer of size **520** in `v()`.
 ```gdb
   0x080484b6 <+18>:    movl   $0x200,0x4(%esp)
 
-  (gdb) p 0x200
+  (gdb) print 0x200
   $1 = 512
 ```
 
@@ -141,6 +141,10 @@ A variable called `m` is located at address `0x0804988c`. This could be importan
 
 ```gdb
     0x080484da <+54>:    mov    0x804988c,%eax
+    0x080484df <+59>:    cmp    $0x40,%eax
+
+    (gdb) print 0x40
+    $1 = 64
 ```
 
-It might be useful, who knows...
+It checks if this variable is equal to **64**. It might be useful, who knows...
