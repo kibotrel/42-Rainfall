@@ -92,7 +92,7 @@ We can see `run()` which is never called in the main. Let's check what it's supp
 
 The `run()` function is located at address `0x8048444`.
 
-## Buffer size
+## Buffers size
 
 ```gdb
   0x08048486 <+6>:     sub    $0x50,%esp
@@ -104,7 +104,7 @@ The `run()` function is located at address `0x8048444`.
 
 There is a buffer of **64** bytes in `main()`.
 
-## Buffer offset
+## Buffers offset
 
 ```gdb
   (gdb) break *0x08048490

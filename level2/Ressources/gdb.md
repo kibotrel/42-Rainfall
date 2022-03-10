@@ -93,7 +93,7 @@ The string `(%p)\n` is stored at address `0x8048620`.
 
 The string `/bin/sh` is stored at address `0xb7f8cc58`.
 
-## Buffer size
+## Buffers size
 
 ```gdb
   0x080484e7 <+19>:    lea    -0x4c(%ebp),%eax
@@ -104,7 +104,7 @@ The string `/bin/sh` is stored at address `0xb7f8cc58`.
 
  There is a buffer of **76** bytes in `p()`.
 
-## Buffer offset
+## Buffers offset
 
 ```gdb
   (gdb) break *0x080484f2
