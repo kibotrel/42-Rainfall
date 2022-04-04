@@ -13,18 +13,21 @@ void m(void *address) {
 }
 
 int main(int argc, char** argv) {
-  int *buffer1 = malloc(8);
-  int *junk = malloc(8);
-  int *buffer2 = malloc(8);
+  int *buffer1;
+  int *buffer2;
 
-  *buffer1 = 1;
-  buffer1[1] = (int*)junk;
-  *buffer2 = 2;
-  buffer2[1] = (int*)junk;
+  buffer1 = malloc(8);
+  buffer1[0] = 1;
+  buffer1[1] = malloc(8);
+
+  buffer2 = malloc(8);
+  buffer2[0] = 2;
+  buffer2[1] = malloc(8);
+
   strcpy((char*)buffer1[1], argv[1]);
   strcpy((char*)buffer2[1], argv[2]);
 
-  FILE *file = fopen("/home/user/level8/.pass", "r");
+  FILE *file = fopen("/home/user/level7/.pass", "r");
 
   fgets(c, 68, file);
   puts("~~");

