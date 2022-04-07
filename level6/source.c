@@ -1,6 +1,5 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include <stdint.h>
 #include <string.h>
 
 typedef void(*function_pointer)(void);
@@ -13,8 +12,8 @@ void m(void) {
 	puts("Nope");
 }
 
-uint8_t main(int argc, char **argv) {
-  uint8_t *input = (uint8_t*)malloc(64);
+int main(int argc, char **argv) {
+  char *input = (char*)malloc(64);
   function_pointer *f = (function_pointer*)malloc(4);
   *f = m;
 

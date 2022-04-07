@@ -1,8 +1,7 @@
 #include <stdio.h>
-#include <stdint.h>
 #include <stdlib.h>
 
-uint32_t m;
+int m;
 
 void p(char *string) {
   printf(string);
@@ -19,6 +18,8 @@ void n(void) {
   }
 }
 
-uint8_t main(void) {
+int main(void) {
   n();
+
+  return 0;
 }

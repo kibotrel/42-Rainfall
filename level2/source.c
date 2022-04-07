@@ -1,11 +1,10 @@
 #include <stdio.h>
-#include <stdint.h>
 #include <string.h>
 #include <stdlib.h>
 
 void p(void) {
-  uint8_t input[76];
-  uint32_t memory_address;
+  char input[76];
+  int memory_address;
 
   fflush(stdout);
   gets(input);
@@ -19,6 +18,8 @@ void p(void) {
   strdup(input);
 }
 
-uint8_t main(void) {
+int main(void) {
   p();
+
+  return 0;
 }

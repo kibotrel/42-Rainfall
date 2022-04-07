@@ -1,8 +1,7 @@
 #include <stdio.h>
-#include <stdint.h>
 #include <stdlib.h>
 
-uint8_t m;
+int m;
 
 void v(void) {
   char input[520];
@@ -16,6 +15,8 @@ void v(void) {
   }
 }
 
-uint8_t main(void) {
+int main(void) {
   v();
+
+  return 0;
 }

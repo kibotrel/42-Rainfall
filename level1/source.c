@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <stdint.h>
 #include <stdlib.h>
 
 void run(void) {
@@ -7,7 +6,7 @@ void run(void) {
   system("/bin/sh");
 }
 
-uint8_t main(void) {
+int main(void) {
   char buffer[64];
 
   gets(buffer);

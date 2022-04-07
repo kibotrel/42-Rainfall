@@ -1,7 +1,6 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdio.h>
-#include <stdint.h>
 
 void o(void) {
   system("/bin/sh");
@@ -16,6 +15,7 @@ void n(void) {
   exit(1);
 }
 
-uint8_t main(void) {
+int main(void) {
   n();
+  return 0;
 }

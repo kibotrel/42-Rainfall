@@ -3,10 +3,9 @@
 #include <string.h>
 #include <unistd.h>
 #include <sys/types.h>
-#include <stdint.h>
 #define _GNU_SOURCE
 
-uint8_t main(uint32_t argc, uint8_t **argv) {
+int main(int argc, char **argv) {
   if (atoi(argv[1]) == 423) {
     char *const args[] = { strdup("/bin/sh"), NULL };
     gid_t gid = getegid();
