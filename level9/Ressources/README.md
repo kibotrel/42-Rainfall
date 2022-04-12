@@ -5,7 +5,7 @@ Let's run [`checksec`](https://www.systutorials.com/docs/linux/man/7-checksec/) 
 ```shell
   $> checksec --file level9
   RELRO           STACK CANARY      NX            PIE             RPATH      RUNPATH      FILE
-  No RELRO        No canary found   NX disabled   No PIE          No RPATH   No RUNPATH   level7
+  No RELRO        No canary found   NX disabled   No PIE          No RPATH   No RUNPATH   level9
 ```
 
 > Same security as previous level.
