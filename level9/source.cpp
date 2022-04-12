@@ -30,9 +30,8 @@ int main(int argc, char **argv) {
     exit(1);
   }
 
-  N first = N(5);
-  N second = N(6);
-  
-  first.setAnnotation(argv[1]);
-  return first + second;
+  N *first = new N(5);
+  N *second = new N(6);
+
+  return (*first + *second);
 }

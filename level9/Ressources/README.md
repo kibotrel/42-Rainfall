@@ -19,5 +19,5 @@ Let's run [`checksec`](https://www.systutorials.com/docs/linux/man/7-checksec/) 
 Use this command to compile [`source.c`](../source.c), reproduction source-code of the given binary.
 
 ```shell
-  $> g++ -Wl,-z,norelro -fno-stack-protector -z execstack -o level9 source.cpp
+  $> c++ -Wl,-z,norelro -fno-stack-protector -z execstack -o level9 source.cpp
 ```
