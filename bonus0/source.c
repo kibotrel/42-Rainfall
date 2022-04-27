@@ -1,3 +1,7 @@
+#include <string.h>
+#include <unistd.h>
+#include <stdio.h>
+
 void p(char *buffer1, char *buffer2) {
   char buffer3[4104];
 
