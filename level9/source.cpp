@@ -33,5 +33,7 @@ int main(int argc, char **argv) {
   N *first = new N(5);
   N *second = new N(6);
 
+  *first->setAnnotation(argv[1])
+  
   return (*first + *second);
 }
