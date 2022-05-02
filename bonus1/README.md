@@ -22,7 +22,7 @@ Using [`gdb`](https://linux.die.net/man/1/gdb), we can dig through the binary to
 int main(void) {
 	int input = 0;
 
-	for (int result = 0; result <= 0 || result > 60; input--) {
+	for (int result = 0; result <= 0 || result > 64; input--) {
 		result = input * 4;
 	}
 
